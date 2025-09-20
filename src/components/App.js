@@ -5,6 +5,7 @@ import Step from "./Step";
 const App = () => {
   const [step, setStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
+
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
@@ -14,8 +15,13 @@ const App = () => {
     expiry_date: "",
   });
 
-  const nextStep = () => setStep((prev) => prev + 1);
-  const prevStep = () => setStep((prev) => prev - 1);
+  const nextStep = () => {
+  setTimeout(() => setStep(prev => prev + 1), 0);
+};
+
+  const prevStep = () => {
+    setStep(prev => prev - 1);
+  };
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -24,25 +30,33 @@ const App = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // Credit card validation
     if (formData.card_info.length !== 12) return;
+
+    // Expiry date validation
     const expiryRegex = /^(0[1-9]|1[0-2])\/\d{2}$/;
     if (!expiryRegex.test(formData.expiry_date)) return;
 
-    setSubmitted(true); // Show success message instead of alert
+    setSubmitted(true); // Show success message
   };
 
   return (
     <div>
-      <Step
-        step={step}
-        formData={formData}
-        handleChange={handleChange}
-        nextStep={nextStep}
-        prevStep={prevStep}
-        handleSubmit={handleSubmit}
-      />
+      <form onSubmit={handleSubmit}>
+        <Step
+          step={step}
+          formData={formData}
+          handleChange={handleChange}
+          nextStep={nextStep}
+          prevStep={prevStep}
+        />
+      </form>
+
       {submitted && (
-        <div style={{ textAlign: "center", marginTop: "20px", color: "green" }}>
+        <div
+          data-testid="success-message"
+          style={{ textAlign: "center", marginTop: "20px", color: "green" }}
+        >
           Form submitted successfully!
         </div>
       )}
