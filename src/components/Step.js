@@ -4,7 +4,7 @@ const Step = ({ step, formData, handleChange, nextStep, prevStep, handleSubmit }
   const validateExpiry = (e) => {
     const expiryRegex = /^(0[1-9]|1[0-2])\/\d{2}$/;
     if (e.target.value && !expiryRegex.test(e.target.value)) {
-      alert("Expiration date must be in MM/YY format.");
+      alert("Expiration date must be in MM/YY format."); // optional, can remove if you want
     }
   };
 
