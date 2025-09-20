@@ -12,7 +12,7 @@ const Step = ({ step, formData, handleChange, nextStep, prevStep, handleSubmit }
     <div className="form-container">
       <form onSubmit={handleSubmit}>
         {step === 1 && (
-          <div id="step1">
+          <div id="step1" data-testid="step1">
             <h3>Customer Details</h3>
             <label>
               First Name:
@@ -34,12 +34,12 @@ const Step = ({ step, formData, handleChange, nextStep, prevStep, handleSubmit }
               />
             </label>
             <br />
-            <button type="button" onClick={nextStep}>Next</button>
+            <button type="button" data-testid="next-btn-1" onClick={nextStep}>Next</button>
           </div>
         )}
 
         {step === 2 && (
-          <div id="step2">
+          <div id="step2" data-testid="step2">
             <h3>Car Details</h3>
             <label>
               Model:
@@ -61,13 +61,13 @@ const Step = ({ step, formData, handleChange, nextStep, prevStep, handleSubmit }
               />
             </label>
             <br />
-            <button type="button" onClick={prevStep}>Previous</button>
-            <button type="button" onClick={nextStep}>Next</button>
+            <button type="button" data-testid="prev-btn-2" onClick={prevStep}>Previous</button>
+            <button type="button" data-testid="next-btn-2" onClick={nextStep}>Next</button>
           </div>
         )}
 
         {step === 3 && (
-          <div id="step3">
+          <div id="step3" data-testid="step3">
             <h3>Payment Details</h3>
             <label>
               Credit Card Number:
@@ -105,8 +105,8 @@ const Step = ({ step, formData, handleChange, nextStep, prevStep, handleSubmit }
               )}
             <br />
 
-            <button type="button" onClick={prevStep}>Previous</button>
-            <button type="submit">Submit</button>
+            <button type="button" data-testid="prev-btn-3" onClick={prevStep}>Previous</button>
+            <button type="submit" data-testid="submit-btn">Submit</button>
           </div>
         )}
       </form>
